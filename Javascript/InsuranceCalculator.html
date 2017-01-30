@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <title>Insurance Calculator</title>
+    <meta charset='utf-8'>
+    <meta name='description' content=''>
+    <meta name='keywords' content=''>
+    <meta name='author' content=''>
+    <meta name='robots' content='all'>
+    <!-- <meta http-equiv='X-UA-Compatible' content='IE=edge'> -->
+    <link href='/favicon.png' rel='shortcut icon' type='image/png'>
+  
+   <link rel="stylesheet" href="responsive.css"  media = "screen and (max-width:900px)">
+  
+  <script type="text/javascript">
+  
+  var cost = new Array(10);
+  var question = new Array(10);
+   question[0]="Own";
+   question[1]="Type";
+   question[2]="Years Old";
+   question[3]="House Alarm";
+   question[4]="Smoke Detectors";
+   question[5]="Location";
+   question[6]="Claims Free";
+   question[7]="Buildins";
+   question[8]="Contents";
+   question[9]="Excess";
+  
+  
+  
+  
+  
+  function calcCost()   {
+ 
+ var valid = true;
+ var i;
+ var sum = 0;
+ var arrangements="";
+ var len = document.forms[0].arrangements.length;
+ for (i = 0; i < len; i++) {
+ if (document.forms[0].arrangements[i].checked )
+ {
+    arrangements = parseInt(document.forms[0].arrangements[i].value);
+    break;
+ }
+ }
+ if (arrangements == "")
+ {
+    window.alert("You never answered Q1.")
+    valid = false;
+    
+ }
+ else if(arrangements != "")
+ {
+    cost[0] = arrangements;
+    
+ }
+ 
+
+    
+ var type = document.forms[0].type.value;
+ 
+  switch(type)
+        {
+            case "detached":
+              cost[1]=100;
+              break;
+            case "semi-d":
+              cost[1]=50;
+              break;
+            case "bungalow":
+              cost[1]=65;
+              break;
+            case "terraced":
+              cost[1]=40;
+              break;
+            case "apart":
+              cost[1]=10;
+              break;
+            case "":
+              window.alert("You never answered Q2.") ;
+              valid == false;
+              
+              
+        }
+        
+      
+        
+  var age = document.forms[0].age.value;
+ 
+  switch(age)
+        {
+            case "1yr":
+              cost[2]=50;
+              break;
+            case "1-5yr":
+              cost[2]=75;
+              break;
+            case "5-15yr":
+              cost[2]=90;
+              break;
+            case ">15yr":
+              cost[2]=100;
+              break;
+            case "":
+              window.alert("You never answered Q3.")
+              valid == false;
+              
+              
+        }   
+   var j;     
+   var alarm ="";     
+   var len2 = document.forms[0].alarm.length;
+   for (j = 0; j < len2; j++) {
+   if (document.forms[0].alarm[j].checked )
+   {
+      alarm = parseInt(document.forms[0].alarm[j].value);
+      break;
+   }
+   }
+   if (alarm == "")
+   {
+      window.alert("You never answered Q4.")
+      valid = false;
+      
+   }
+   else if(alarm != "")
+   {
+      cost[3] = alarm;
+      
+   }      
+          
+   var k;
+   var atLeast ="";     
+   var len4 = document.forms[0].atLeast.length;
+   for (k = 0; k < len4; k++) {
+   if (document.forms[0].atLeast[k].checked )
+   {
+      atLeast = parseInt(document.forms[0].atLeast[k].value);
+      break;
+   }
+   }
+   if (atLeast == "")
+   {
+      window.alert("You never answered Q5.")
+      valid = false;
+      
+   }
+   else if(atLeast != "")
+   {
+      cost[4] = atLeast;
+      
+   }
+  
+  
+  var location = document.forms[0].location.value;
+ 
+  switch(location)
+        {
+            case "dub":
+              cost[5]=50;
+              break;
+            case "clk":
+              cost[5]=30;
+              break;
+            case "west":
+              cost[5]=10;
+              break;
+            case "":
+              window.alert("You never answered Q6.")
+              valid = false;
+              
+              
+        }
+  
+  
+  var claimsFree = document.forms[0].claimsFree.value;
+ 
+  switch(claimsFree)
+        {
+            case "1yr":
+              cost[6]=50;
+              break;
+            case "2yr":
+              cost[6]=70;
+              break;
+            case "3yr":
+              cost[6]=90;
+              break;
+            case "4yr":
+              cost[6]=110;
+              break;
+            case "5yr":
+              cost[6]=150;
+              break;
+            case "":
+              window.alert("You never answered Q7.")
+              valid = false;
+              
+              
+        }
+  
+  var contents = document.forms[0].contents.value;
+ 
+  switch(contents)
+        {
+            case "10k":
+              cost[8]=100;
+              break;
+            case "40k":
+              cost[8]=80;
+              break;
+            case "60k":
+              cost[8]=60;
+              break;
+            case "80k":
+              cost[8]=40;
+              break;
+            case ">80k":
+              cost[8];
+              break;
+            case "":
+              window.alert("You never answered Q9.")
+              valid = false;
+              
+              
+        }
+        
+    
+   var claimsExcess ="";     
+   var len3 = document.forms[0].claimsExcess.length;
+   for (i = 0; i < len3; i++) {
+   if (document.forms[0].claimsExcess[i].checked )
+   {
+      claimsExcess = parseInt(document.forms[0].claimsExcess[i].value);
+      break;
+   }
+   }
+   if (claimsExcess == "")
+   {
+      window.alert("You never answered Q10.")
+      valid = false;
+      
+   }
+   else if(claimsExcess != "")
+   {
+      cost[4] = claimsExcess;
+      
+   }
+  
+  
+  
+  
+  
+    for (var c=0;c<7;c++)
+    {
+    sum += cost[c];
+    }     
+   
+    if(valid==true)    
+    document.getElementById("radio error").innerHTML = "Total Cost " + sum;     
+          
+          
+   }
+   
+   
+   
+   
+   
+   
+   /*
+  
+  
+  if(ans2 =="1")
+    cost[1]=100;
+  else if(ans2 =="2")
+    cost[1]=25;
+  else if(ans2 =="3")
+    cost[1]=65;
+  else if(ans2 =="4")
+    cost[1]=40;
+  else
+    cost[1]=10;
+   
+   
+  
+  if (ans3 =="1")
+     cost[2]=50;
+  else if(ans3 =="2")
+      cost[2]=75;
+  else if(ans3 =="3")
+      cost[2]=90;
+  else
+      cost[2]=100;
+  
+ 
+  
+  if (ans4 == "1")
+      cost[3]=100;
+  else if(ans4 =="2")
+      cost[3] = 40;
+  else
+      cost[3] = 10;
+  
+  
+ 
+  if (ans5 == "1")
+      cost[4]=50;
+  else
+      cost[4]=10;
+  
+  
+  
+  if (ans6 == "1")
+      cost[5]=50;
+  else if(ans6 =="2")
+      cost[5] = 30;
+  else
+      cost[5] = 10;
+  
+  
+  
+  if(ans7 =="1")
+    cost[6] = 100;
+  else if(ans7 =="2")
+    cost[6]= 80;
+  else if(ans7 =="3")
+    cost[6]= 60;
+  else if(ans7 =="4")
+    cost[6]= 40;
+  else
+    cost[6]= 20;
+   
+   
+  
+   cost[7] = 1;
+            
+   
+  
+  if(ans9 =="1")
+    cost[8] = 50;
+  else if(ans9 =="2")
+    cost[8]= 70;
+  else if(ans9 =="3")
+    cost[8]= 90;
+  else if(ans9 =="4")
+    cost[8]= 110;
+  else
+    cost[8]= 150;
+   
+   
+  
+  if (ans10 == "1")
+      cost[9]=50;
+  else if(ans10 =="2")
+      cost[9] = 30;
+  else
+      cost[9] = 10;
+  
+  
+  
+  
+  
+  
+  
+  
+   
+  
+  var sum=0;
+  
+  for(var i=0; i<10; i++)
+  {
+      sum += parseInt(cost[i]);    
+  }  
+  
+   
+  
+  window.alert(sum);
+  */
+  
+  
+  
+       
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </script>
+  
+  <style type="text/css">
+  
+   
+  .container{
+  width:80%;
+  margin-left:auto;
+  margin-right:auto;
+  height:auto;
+  }
+  
+  .left{
+  float:left;
+  padding:10px;
+  margin:20px;
+  border-radius:10px;
+  border:black 1px solid;
+  height:150px;
+  width:300px;
+  }
+  
+  .button{
+  background-color:grey;
+  color:white;
+  float:left;
+  margin:20px;
+  }
+  
+  
+  
+  
+  </style>
+  
+  </head>
+  <body>
+  
+  <form>
+  
+  <div class="left">
+  
+  <p>Q1.Do you own the property or rent it from someone?</p>
+  <input type="radio" name="arrangements" value="50">I own and live in it <br>
+  <input type="radio" name="arrangements" value="25">I own it and it's a Summer House <br>
+  <input type="radio" name="arrangements" value="5">I rent it from someone
+ 
+                           
+  </div>
+  
+         
+        <div class="left">
+        <p>Q2.What type of house is it?  </p>
+        <p>
+        
+      <select name="type">
+         <option value=""></option>
+         <option value="detached">Detached</option>
+         <option value="semi-d">Semi-Detached</option>
+         <option value="bungalow">Bungalow</option>
+         <option value="terraced">Terraced</option>
+         <option value="apart">Apartement</option>
+                 
+      </select></p>
+        
+         </div>
+             
+        
+         
+       <div class="left">
+        Q3.How old is the property?
+        <p>
+        
+      <select name="age">
+         <option name="age" value =""></option>
+         <option name="age" value="1yr">&lt;1 year</option>
+         <option name="age" value="1-5yr">&gt;1 &lt;5 years</option>
+         <option name="age" value="5-15yr">&gt;5 &lt;15 years</option>
+         <option name="age" value=">15yr">&gt;15 years</option>
+        
+                 
+      </select></p>
+        
+         </div>
+          
+          
+        <div class="left">
+          Q4.Do you own the property or rent it to someone?<br>
+          <p><input type="radio" name="alarm" value="100">No        <br>
+          <input type="radio" name="alarm" value="40">Yes - Standard Alarm<br>
+          <input type="radio" name="alarm" value="10">Yes - Modern Alarm
+          </p>
+        </div>
+        
+        
+      
+        
+        <div class="left">
+        
+        Q5.Have you at least two smoke detectors fitted
+        
+        <p><input type="radio" name="atLeast" value="50">No<br>
+        <input type="radio" name="atLeast" value="10">Yes
+        </p>
+        
+        </div>
+           
+          <div class="left">
+        Q6.Where is the property located?
+      
+        <p>
+        
+      <select name="location">
+         <option value =""></option>
+         <option value="dub">Dublin</option>
+         <option value="clk">Cork, Kerry or Limerick</option>
+         <option value="west">West of Ireland</option>
+        
+        
+                 
+      </select></p>
+        
+         </div>
+         
+       <div class="left">
+        Q7.How long long are you claims free for?
+        <p>
+        
+      <select name="claimsFree">
+         <option value =""></option>
+         <option value="1yr">1 year</option>
+         <option value="2yr">2 years</option>
+         <option value="3yr">3 years</option>
+         <option value="4yr">4 years</option>
+         <option value="5yr">&gt;=5 years</option>
+        
+                 
+      </select></p>
+      
+      
+        
+         </div>
+          
+          <!--
+        <div class="left">
+      
+      Q8.Buildings cover?
+      <p>
+      <input tpye="text" name="cover" onclick="keepRecord8()">
+      
+      </div>
+      -->
+      <div class="left">
+      
+      Q9.Contents cover required?
+        <p>
+        
+      <select name="contents">
+         <option value =""></option>
+         <option value="20k">&euro;20,000</option>
+         <option value="40k">&euro;40,000</option>
+         <option value="60k">&euro;60,000</option>
+         <option value="80k">&euro;80,000</option>
+         <option value=">80k">&gt;&euro;80,000</option>
+        
+                 
+      </select></p>
+      
+      
+        
+         </div>
+         
+      <div class="left">
+      
+      Q10.Claims Excess
+      <p><input type="radio" name="claimsExcess" value="30">&euro;250<br>
+      <input type="radio" name="claimsExcess" value="50">&euro;500<br>
+      <input type="radio" name="claimsExcess" value="70">&euro;1,000
+      </p>
+      
+      </div> 
+         </form>
+        
+         
+       <div class="left">
+      
+      <input type="button" value="Submit" class="button" onclick="calcCost()">
+      <input type="textarea"><p id="radio error"> </p>
+                       </div>
+                
+        
+  
+      
+             
+  </body>
+</html>
